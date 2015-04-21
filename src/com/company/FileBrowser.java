@@ -144,8 +144,6 @@ public class FileBrowser extends JFrame implements ActionListener {
             System.out.println("******Finsihed \n");//formatting print
             JFrame remote = new JFrame("Run Iteration");
             JPanel remotePanel = new JPanel();
-<<<<<<< HEAD
-
 
             JButton clicker = new JButton("Next Iteration");
             clicker.addActionListener(new ActionListener() {
@@ -153,60 +151,15 @@ public class FileBrowser extends JFrame implements ActionListener {
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("pressed");
                     clicked++;
-=======
-
-
-            JButton clicker = new JButton("Next Iteration");
-            clicker.addMouseListener(new MouseInputListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
                 }
 
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseDragged(MouseEvent e) {
-
->>>>>>> origin/master
-                }
-            });
-
-<<<<<<< HEAD
-
-=======
-                @Override
-                public void mouseMoved(MouseEvent e) {
-
-                }
-                public boolean clicker(MouseEvent e) {
-                    return true;
-                }
             });
 
             remotePanel.add(clicker);
             remote.add(remotePanel);
             remote.setSize(400,200);
             remote.setVisible(true);
->>>>>>> origin/master
+
             while (match != (nodeList.size() * nodeList.size()))//while not all tables match
             {
                 match = 0;//match set to 0
@@ -226,7 +179,7 @@ public class FileBrowser extends JFrame implements ActionListener {
 
                         util.updateNodes(nodeList.get(foundNei).getGrid(), nodeList.size(), nodeList.get(foundNei).getId(), node);//pass to update with nighbour grid, size of list, ID of neighbour
                     }
-<<<<<<< HEAD
+
 
                     //some how provide a counter to run through the iteration
                     ArrayList<String> nodeArray = new ArrayList<String>();
@@ -257,48 +210,7 @@ public class FileBrowser extends JFrame implements ActionListener {
                     //System.out.print("\n");
                 }
                 iteration++;//increment iteration number
-=======
->>>>>>> origin/master
 
-                    //some how provide a counter to run through the iteration
-
-<<<<<<< HEAD
-                for (int index = 0; index < nodeList.size(); index++)//loop to node list size
-                {
-                    for (int innerIndex = 0; innerIndex < nodeList.size(); innerIndex++)//loop to node list size
-                    {
-                        if (new Utils().gridCheck(nodeList.get(index).getGrid(), nodeList.get(innerIndex).getGrid(), nodeList.size()))//if node matches it returns true
-                        {
-                            match++;//check if tables match
-                        }
-=======
-                    ArrayList<String> nodeArray = new ArrayList<String>();
-                    for (int[] i : nodeList.get(index).getGrid()) {
-                        lbl.setText("Grid for " + nodeList.get(index).getId());
-                        nodeArray.add(Arrays.toString(i) + "\n");
->>>>>>> origin/master
-                    }
-
-
-                    // nodeArray.add(Arrays.toString(nodeList.get(index)));
-                    txt.setText(nodeArray.toString());
-                    jp.add(lbl, BorderLayout.NORTH);
-                    jp.add(txt);
-                    jf.add(jp);
-                    jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                    jf.setSize(300, 300);
-                    jf.setVisible(true);
-                    //System.out.println("Grid for node " + nodeList.get(index).getId());//formatting print
-                    //nodeList.get(index).gridPrint();//print grid for node
-                    //System.out.print("\n");
-                }
-<<<<<<< HEAD
-            }
-
-            System.out.println("******Final tables");//formatting print
-
-=======
-                iteration++;//increment iteration number
 
 
                 for (int index = 0; index < nodeList.size(); index++)//loop to node list size
@@ -315,7 +227,7 @@ public class FileBrowser extends JFrame implements ActionListener {
 
             System.out.println("******Final tables");//formatting print
 
->>>>>>> origin/master
+
             for (int index = 0; index < nodeList.size(); index++)//loop to all the nodes
             {
                 System.out.println("Last grid for " + nodeList.get(index));//clean print
