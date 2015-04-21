@@ -12,11 +12,13 @@ public class DVRGUI extends JFrame {
     public static JPanel jPanel1,jPanel2;
     public JMenu File, Help;
     public JMenuItem loadFile,exit;
-    DistanceVector dv = new DistanceVector();
-    FileBrowser fileBrowser = new FileBrowser();
 
+    FileBrowser fileBrowser = new FileBrowser();
+    FileBrowser fb = new FileBrowser();
+    DistanceVector dv = new DistanceVector(fb.getNodeList());
     public DVRGUI()
     {
+        //System.out.println(fb.getNodeList().get(0));
         JMenuBar menuBar = new JMenuBar();
         myFrame.setJMenuBar(menuBar);
         File = new JMenu("File");

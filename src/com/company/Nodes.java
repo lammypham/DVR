@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 public class Nodes //Nodes class
 {
-
     private int id;//node id declared
     public int[][] grid;//declare arry grid
     ArrayList<Integer> neighbour = new ArrayList();//neighbour array list declared
@@ -67,6 +66,6 @@ public class Nodes //Nodes class
 
     @Override
     public String toString() {
-        return "Nodes [id=" + id + ", neighbour=" + neighbour + ", cost=" + cost + "]";
+        return "Nodes [id = " + id + ", neighbour = " + neighbour + ", cost = " + cost + "]";
     }
 }
