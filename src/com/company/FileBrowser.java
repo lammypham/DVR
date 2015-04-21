@@ -3,12 +3,16 @@ package com.company;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.event.MouseInputListener;
 
 /**
  * Created by Lam_2 on 4/8/2015.
@@ -20,6 +24,7 @@ public class FileBrowser extends JFrame implements ActionListener {
     private ArrayList<Nodes> nodeList = new ArrayList();//declare nodelist
     int match = 0;
     int iteration = 1;
+    int clicked = 1;
 
     public FileBrowser() {
         JPanel p = new JPanel();
@@ -124,70 +129,104 @@ public class FileBrowser extends JFrame implements ActionListener {
 
 
             }
-                System.out.println("----------------Start tables----------------");//formatting print
-                Utils util = new Utils();
-                for (int index = 0; index < nodeList.size(); index++)//loop to node list size
-                {
-                    Nodes node = nodeList.get(index);
-                    util.buildTable(nodeList.size(), node);
+            System.out.println("----------------Start tables----------------");//formatting print
+            Utils util = new Utils();
+            for (int index = 0; index < nodeList.size(); index++)//loop to node list size
+            {
+                Nodes node = nodeList.get(index);
+                util.buildTable(nodeList.size(), node);
 
-                    util.gridPrint(node);;//print the nodes for the build table
-                    System.out.print("\n");//print a new line
+                util.gridPrint(node);
+                ;//print the nodes for the build table
+                System.out.print("\n");//print a new line
+            }
+
+            System.out.println("******Finsihed \n");//formatting print
+            JFrame remote = new JFrame("Run Iteration");
+            JPanel remotePanel = new JPanel();
+
+
+            JButton clicker = new JButton("Next Iteration");
+            clicker.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("pressed");
+                    clicked++;
                 }
-
-                System.out.println("******Finsihed \n");//formatting print
-
-                while (match != (nodeList.size() * nodeList.size()))//while not all tables match
-                {
-                    match = 0;//match set to 0
-                    System.out.println("Iteration number : " + iteration + " \n");//formatting print
-                    for (int index = 0; index < nodeList.size(); index++)//loop to all the nodes
-                    {
-                        for (int innerIndex = 0; innerIndex < nodeList.get(index).neighbour.size(); innerIndex++)//loop to neighbours of those nodes
-                        {
-
-                            Nodes node = nodeList.get(index);
-                            int foundNei = (new Utils().nodeMatch(nodeList.get(index).neighbour.get(innerIndex), nodeList));//find the node neighbour
-
-                            util.updateNodes(nodeList.get(foundNei).getGrid(), nodeList.size(), nodeList.get(foundNei).getId(), node);//pass to update with nighbour grid, size of list, ID of neighbour
-                        }
-                        JFrame jf = new JFrame("Iteration " + iteration);
-                        JTextArea txt = new JTextArea(nodeList.get(index).toString());
-                        JPanel jp = new JPanel();
-                        jp.add(txt);
-                        jf.add(jp);
-
-                        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                        jf.setSize(400,400);
-                        jf.setVisible(true);
-                        System.out.println("Grid for node " + nodeList.get(index).getId());//formatting print
-                        nodeList.get(index).gridPrint();//print grid for node
-                        System.out.print("\n");
-                    }
-                    iteration++;//increment iteration number
+            });
 
 
-                    for (int index = 0; index < nodeList.size(); index++)//loop to node list size
-                    {
-                        for (int innerIndex = 0; innerIndex < nodeList.size(); innerIndex++)//loop to node list size
-                        {
-                            if (new Utils().gridCheck(nodeList.get(index).getGrid(), nodeList.get(innerIndex).getGrid(), nodeList.size()))//if node matches it returns true
-                            {
-                                match++;//check if tables match
-                            }
-                        }
-                    }
-                }
-
-                System.out.println("******Final tables");//formatting print
-
+            while (match != (nodeList.size() * nodeList.size()))//while not all tables match
+            {
+                match = 0;//match set to 0
+                //System.out.println("Iteration number : " + iteration + " \n");//formatting print
                 for (int index = 0; index < nodeList.size(); index++)//loop to all the nodes
                 {
-                    System.out.println("Last grid for " + nodeList.get(index));//clean print
-                    nodeList.get(index).gridPrint();
-                    System.out.print("\n");
-                }
+                    JFrame jf = new JFrame("Iteration " + iteration);
+                    JTextArea txt = new JTextArea();
+                    JLabel lbl = new JLabel();
+                    JPanel jp = new JPanel();
 
+                    for (int innerIndex = 0; innerIndex < nodeList.get(index).neighbour.size(); innerIndex++)//loop to neighbours of those nodes
+                    {
+
+                        Nodes node = nodeList.get(index);
+                        int foundNei = (new Utils().nodeMatch(nodeList.get(index).neighbour.get(innerIndex), nodeList));//find the node neighbour
+
+                        util.updateNodes(nodeList.get(foundNei).getGrid(), nodeList.size(), nodeList.get(foundNei).getId(), node);//pass to update with nighbour grid, size of list, ID of neighbour
+                    }
+
+                    //some how provide a counter to run through the iteration
+                    ArrayList<String> nodeArray = new ArrayList<String>();
+                    for (int[] i : nodeList.get(index).getGrid()) {
+                        lbl.setText("Grid for " + nodeList.get(index).getId());
+                        nodeArray.add(Arrays.toString(i) + "\n");
+                    }
+
+                    // nodeArray.add(Arrays.toString(nodeList.get(index)));
+                    txt.setText(nodeArray.toString());
+                    jp.add(lbl, BorderLayout.NORTH);
+                    jp.add(txt);
+                    jf.add(jp);
+                    remotePanel.add(clicker);
+                    remote.add(remotePanel);
+                    remote.setSize(400,200);
+                    remote.setVisible(true);
+//                    while(clicked <= nodeList.size()) {
+
+                        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                        jf.setSize(300, 300);
+                        jf.setVisible(true);
+
+//                    }
+
+                    //System.out.println("Grid for node " + nodeList.get(index).getId());//formatting print
+                    //nodeList.get(index).gridPrint();//print grid for node
+                    //System.out.print("\n");
+                }
+                iteration++;//increment iteration number
+
+
+                for (int index = 0; index < nodeList.size(); index++)//loop to node list size
+                {
+                    for (int innerIndex = 0; innerIndex < nodeList.size(); innerIndex++)//loop to node list size
+                    {
+                        if (new Utils().gridCheck(nodeList.get(index).getGrid(), nodeList.get(innerIndex).getGrid(), nodeList.size()))//if node matches it returns true
+                        {
+                            match++;//check if tables match
+                        }
+                    }
+                }
+            }
+
+            System.out.println("******Final tables");//formatting print
+
+            for (int index = 0; index < nodeList.size(); index++)//loop to all the nodes
+            {
+                System.out.println("Last grid for " + nodeList.get(index));//clean print
+                nodeList.get(index).gridPrint();
+                System.out.print("\n");
+            }
 
 
         } catch (IOException e1) {
