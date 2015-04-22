@@ -32,8 +32,7 @@ public class DVRGUI extends JFrame {
         loadFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (fileBrowser.selectFile() == JFileChooser.APPROVE_OPTION)
-                {
+                if (fileBrowser.selectFile() == JFileChooser.APPROVE_OPTION) {
                     String filename = fileBrowser.getFilePath();
                     dv.setFileName(filename);
                     dv.loadFile();
@@ -46,6 +45,7 @@ public class DVRGUI extends JFrame {
         File.add(exit);
         menuBar.add(File);
         jPanel1 = new JPanel();
+        jPanel1.setLayout(new GridLayout(0,2));
         jPanel1.setPreferredSize(new Dimension(750, 600));
         jPanel1.setBackground(Color.white);
        // jPanel1.add(run, BorderLayout.PAGE_END);

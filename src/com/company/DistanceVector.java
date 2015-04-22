@@ -31,11 +31,9 @@ public class DistanceVector implements ActionListener {
 
     DistanceVector(ArrayList nl) {
         this.nodeList = nl;
-        //System.out.println(nl.get(0));
 
 
     }
-
     public void actionPerformed(ActionEvent e) {
         System.out.println("running Distance Vector Algorithm");
 
@@ -48,8 +46,6 @@ public class DistanceVector implements ActionListener {
 
 
     }
-
-
     public void loadFile() {
 
         try {
@@ -133,14 +129,13 @@ public class DistanceVector implements ActionListener {
 
             if(taLst.isEmpty()) {
                 for(int index=0; index < nodeList.size(); index++) {
-                    JTextArea txt = new JTextArea();
+                    JTextArea txt = new JTextArea(6,6);
                     JLabel lbl = new JLabel();
                     taLst.add(txt);
                     lbLst.add(lbl);
                 }
             }
 
-            //System.out.println("Iteration number : " + iteration + " \n");//formatting print
             for (int index = 0; index < nodeList.size(); index++)//loop to all the nodes
             {
                 JTextArea txt = taLst.get(index);
@@ -160,23 +155,14 @@ public class DistanceVector implements ActionListener {
                 ArrayList<String> nodeArray = new ArrayList<String>();
                 for (int[] i : nodeList.get(index).getGrid()) {
                     lbl.setText("Grid for " + nodeList.get(index).getId());
-                    nodeArray.add(Arrays.toString(i) + "\n");
+                    nodeArray.add(Arrays.toString(i).replaceAll("\\[","").replaceAll("\\]","").replaceAll("\\,", "").replaceAll(" ","  ") + "\n");
                 }
 
-                // nodeArray.add(Arrays.toString(nodeList.get(index)));
-                txt.setText(nodeArray.toString());
+                txt.setText(nodeArray.toString().replaceAll("\\[","").replaceAll("\\]","").replaceAll("\\,",""));
                 DVRGUI.jPanel1.add(lbl);
                 DVRGUI.jPanel1.add(txt);
 
 
-                //jp.add(lbl, BorderLayout.NORTH);
-                //jp.add(txt);
-                //jf.add(jp);
-
-
-//                System.out.println("Grid for node " + nodeList.get(index).getId());//formatting print
-//                nodeList.get(index).gridPrint();//print grid for node
-//                System.out.print("\n");
             }
             DVRGUI.jPanel2.add(itr = new JLabel("Iteration: " + iteration));
 
