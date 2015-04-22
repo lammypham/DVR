@@ -14,6 +14,7 @@ public class Nodes //Nodes class
     ArrayList<Integer> cost = new ArrayList();//cost array list declared
 
     public void setGrid(int[][] grid) {
+
         this.grid = grid;
     }
 
