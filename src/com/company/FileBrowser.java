@@ -17,20 +17,20 @@ import javax.swing.event.MouseInputListener;
 /**
  * Created by Lam_2 on 4/8/2015.
  */
-public class FileBrowser extends JFrame  {
+
+/*
+FileBrowser class that handles the front end file input and returns the file path to the distance vector class
+ */
+public class FileBrowser extends JFrame {
     private JTextField filename = new JTextField(), dir = new JTextField();
     private JButton open = new JButton("Open"), save = new JButton("Save");
     private JTextField fileInput = new JTextField(15);//declare jtextfield
     private ArrayList<Nodes> nodeList = new ArrayList();//declare nodelist
-    int match = 0;
-    int iteration = 1;
-    int clicked = 1;
 
+    //FileBrowser constructor constructs the panels and container to build the GUI for the fb
     public FileBrowser() {
         JPanel p = new JPanel();
-        //open.addActionListener(new OpenL());
         p.add(open);
-        //save.addActionListener(new SaveL());
         p.add(save);
         Container cp = getContentPane();
         cp.add(p, BorderLayout.SOUTH);
@@ -43,20 +43,23 @@ public class FileBrowser extends JFrame  {
         cp.add(p, BorderLayout.NORTH);
     }
 
+    //retrieve the file path
     public String getFilePath() {
         return filename.getName();
     }
 
+    //passes the nodeList
     public ArrayList getNodeList() {
         return nodeList;
     }
 
+    //set the nodeList
     public void setNodeList(ArrayList nl) {
         this.nodeList = nl;
     }
 
-
-    public int  selectFile() {
+    //selects file and passes
+    public int selectFile() {
         JFileChooser c = new JFileChooser();
         // Demonstrate "Open" dialog:
         int rVal = c.showOpenDialog(FileBrowser.this);
@@ -65,7 +68,6 @@ public class FileBrowser extends JFrame  {
             dir.setText(c.getCurrentDirectory().toString());
             System.out.println(filename.getName());
         }
-
         if (rVal == JFileChooser.CANCEL_OPTION) {
             filename.setName("");
             dir.setText("");

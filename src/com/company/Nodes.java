@@ -3,70 +3,71 @@ package com.company;
 /**
  * Created by Lam_2 on 4/20/2015.
  */
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Nodes //Nodes class
-{
-    private int id;//node id declared
-    public int[][] grid;//declare arry grid
-    ArrayList<Integer> neighbour = new ArrayList();//neighbour array list declared
-    ArrayList<Integer> cost = new ArrayList();//cost array list declared
+/*
+    Nodes class to build the nodes in the grid
+ */
+public class Nodes {
+    private int id;
+    public int[][] grid;
+    ArrayList<Integer> neighbour = new ArrayList();
+    ArrayList<Integer> cost = new ArrayList();
 
-    public void setGrid(int[][] grid) {
-
-        this.grid = grid;
-    }
-
-    public int[][] getGrid()// method for getting the grid
-    {
-        return grid;//return the grid
-    }
-
+    //create the nodes
     public Nodes(int id) //constructor to create node
     {
         this.id = id;
     }
 
-    public int getId() //getter for id
-    {
+    //set the grid
+    public void setGrid(int[][] grid) {
+
+        this.grid = grid;
+    }
+
+    //retrieve the grid
+    public int[][] getGrid() {
+        return grid;//return the grid
+    }
+
+    //retrieve id
+    public int getId() {
         return id;
     }
 
-    public void setId(int id) //setter for id
-    {
+    //set id
+    public void setId(int id) {
         this.id = id;
     }
 
-    public ArrayList<Integer> getNeighbour() //getter for neighbour array list
-    {
+    //retrieve the neighbor node list
+    public ArrayList<Integer> getNeighbour() {
         return neighbour;
     }
 
-    public void setNeighbour(int neighbour) //setter for neighbour
-    {
+    //set neighbor node list
+    public void setNeighbour(int neighbour) {
         this.neighbour.add(neighbour);
     }
 
-    public ArrayList<Integer> getCost() //getter for cost array list
-    {
+    //get id cost list
+    public ArrayList<Integer> getCost() {
         return cost;
     }
 
-    public void setCost(int cost) //setter for cost
-    {
+    //set id cost list
+    public void setCost(int cost) {
         this.cost.add(cost);
     }
 
-    public void gridPrint()//method to print gird
-    {
+    //print grid
+    public void gridPrint() {
         for (int[] index : grid) {
             System.out.println(Arrays.toString(index));
         }
     }
 
-    @Override
-    public String toString() {
-        return "Nodes [id = " + id + ", neighbour = " + neighbour + ", cost = " + cost + "]";
-    }
 }

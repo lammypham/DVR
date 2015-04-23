@@ -6,15 +6,14 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Lam_2 on 4/8/2015.
+ * Created by Lam_2 on 4/22/2015.
  */
-public class DistanceVector implements ActionListener {
+public class DistanceVectorCompleteRun implements ActionListener {
     private JTextField fileInput = new JTextField(15);//declare jtextfield
     private ArrayList<Nodes> nodeList = new ArrayList();//declare nodelist
     int match = 0;
@@ -36,7 +35,7 @@ public class DistanceVector implements ActionListener {
 
         if (clicked <= nodeList.size()) {
 
-            runItr(clicked);
+            runComplete(clicked);
             clicked++;
         }
     }
@@ -53,7 +52,7 @@ public class DistanceVector implements ActionListener {
             while ((line = reader.readLine()) != null) {
                 token = line.split(" ");
                 int n1 = Integer.parseInt(token[0]); // node
-                int n2 = Integer.parseInt(token[1]); // neighbor
+                int n2 = Integer.parseInt(token[1]); // next
                 int val = Integer.parseInt(token[2]); // cost
 
                 //flags to check if values are not null
@@ -103,14 +102,11 @@ public class DistanceVector implements ActionListener {
         }
     }
 
-    //sets the file name
     public void setFileName(String fn) {
         this.filename = fn;
     }
 
-    //runs iterations only
     public void runItr(int click) {
-        //checks for stable state
         if (match != (nodeList.size() * nodeList.size()))//while not all tables match
         {
             match = 0;//match set to 0
@@ -175,10 +171,10 @@ public class DistanceVector implements ActionListener {
             }
         }
     }
-//runs without stopping
 
     public void runComplete(int click) {
-        //check for stable state
+        JTextField jtxt = new JTextField();
+        long startTime = System.nanoTime();
         while (match != (nodeList.size() * nodeList.size()))//while not all tables match
         {
             match = 0;//match set to 0
@@ -242,7 +238,11 @@ public class DistanceVector implements ActionListener {
                 }
             }
         }
-
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime) / 1000000;
+        jtxt.setText("Time to run: " + duration + " ms");
+        DVRGUI.jPanel2.add(jtxt);
+        DVRGUI.jPanel2.revalidate();
+        DVRGUI.jPanel2.repaint();
     }
 }
-

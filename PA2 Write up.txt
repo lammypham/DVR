@@ -1,0 +1,36 @@
+Lam Pham
+1000744010
+Program Assignment 2
+
+HOW TO RUN PROGRAM:
+
+If you wish to insert a .txt file for code, please put in format as follows
+id neighbor cost
+...
+...
+...
+id neighbor cost
+IMPORTANT!
+Please insert the input file in the same folder where the src folder is, otherwise the program will crash.
+
+To begin running the code, the main driver is in the Main.java class. When you run the file, a GUI will appear.
+Select File, Load and search for the folder containing the src folder. Once you select the File you have 2 choices:
+Run Distance Vector Routing -- runs iteration by iteration step at a time
+Run Completely -- runs completely and displays the time
+
+Notice that you cannot click these buttons until an input file has been loaded.
+
+
+OBSERVATIONS:
+As I run through the observation, I can see how each grid runs and updates the values based on shortest path.
+the values are being updated until there is a stable state. Once the stable state has been reached, there is no more
+need to update the tables
+
+When I just run the grid completely, I can see the processing speed it takes for the algorithm to reach a stable state
+with the nodes. For me, it is roughly 12-13 ms in order for the Distance Vector Routing algorithm to reach a stable
+state.
+
+//referenced materials
+http://stackoverflow.com/questions/180158/how-do-i-time-a-methods-execution-in-java
+https://www.ida.liu.se/~TDTS04/labs/2015/DV/default.html
+https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
