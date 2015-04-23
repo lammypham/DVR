@@ -56,11 +56,7 @@ public class DVRGUI extends JFrame {
         menuBar.add(File);
         //grid panels
         jPanel1 = new JPanel();
-<<<<<<< HEAD
-        jPanel1.setLayout(new GridLayout(0, 2));
-=======
         jPanel1.setLayout(new GridLayout(0,2));
->>>>>>> origin/master
         jPanel1.setPreferredSize(new Dimension(750, 600));
         jPanel1.setBackground(Color.white);
         myFrame.add(jPanel1, BorderLayout.WEST);
